@@ -110,7 +110,8 @@ int main (int argc, char** argv)
     /***************/
     /* Start timer */
     /***************/
-
+    //erlingrj: Call setup function to configure our perf-counters
+    perf_counters_setup()
     setStats(1);
     Start_Timer();
 

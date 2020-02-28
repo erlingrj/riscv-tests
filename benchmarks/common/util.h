@@ -87,4 +87,9 @@ static uintptr_t insn_len(uintptr_t pc)
              stringify(code), _c, _c/iter, 10*_c/iter%10, _c/_i, 10*_c/_i%10); \
   } while(0)
 
+// erlingrj:
+//  Add function for setting up our own custom performance counters
+
+void perf_counters_setup();
+
 #endif //__UTIL_H

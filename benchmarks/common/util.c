@@ -25,18 +25,3 @@ void perf_counters_setup() {
 
 */
 }
-
-// After simulation is over we read again tha counters and outputs the result
-void perf_counters_read() {
-  uint64_t end_hpmc3 = read_csr_safe(hpmcounter3);
-  uint64_t end_hpmc4 = read_csr_safe(hpmcounter4);
-  uint64_t end_hpmc5 = read_csr_safe(hpmcounter5);
-  uint64_t end_hpmc6 = read_csr_safe(hpmcounter6);
-
-  printf("aq0=%u\nbq0=%u\naq1=%u\nbq1=%u\n",
-  end_hpmc3 - start_aq0,
-  end_hpmc4 - start_bq0,
-  end_hpmc5 - start_aq1,
-  end_hpmc6 - start_hpmc6
-  );
-}

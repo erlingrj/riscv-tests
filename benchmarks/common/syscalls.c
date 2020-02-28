@@ -33,7 +33,8 @@ static uintptr_t syscall(uintptr_t which, uint64_t arg0, uint64_t arg1, uint64_t
   return magic_mem[0];
 }
 
-#define NUM_COUNTERS 2
+
+#define NUM_COUNTERS 6 // erlingrj: 2 + number of our own counters
 static uintptr_t counters[NUM_COUNTERS];
 static char* counter_names[NUM_COUNTERS];
 
@@ -49,10 +50,14 @@ void setStats(int enable)
 
   READ_CTR(mcycle);
   READ_CTR(minstret);
+  READ_CTR(mhpmevent3);
+  READ_CTR(mhpmevent4);
+  READ_CTR(mhpmevent5);
+  READ_CTR(mhpmevent6); // erlingrj: Add our own counters. They will be printer with this name
+
 
 #undef READ_CTR
 }
-
 void __attribute__((noreturn)) tohost_exit(uintptr_t code)
 {
   tohost = (code << 1) | 1;
