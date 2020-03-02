@@ -38,6 +38,7 @@ int main( int argc, char* argv[] )
   vvadd( DATA_SIZE, input1_data, input2_data, results_data );
 #endif
 
+  perf_counters_setup();
   // Do the vvadd
   setStats(1);
   vvadd( DATA_SIZE, input1_data, input2_data, results_data );

@@ -112,6 +112,8 @@ int main( int argc, char* argv[] )
     return 1;
 #endif
 
+  perf_counters_setup();
+  
   // Do the sort
   setStats(1);
   sort(DATA_SIZE, input_data, scratch);

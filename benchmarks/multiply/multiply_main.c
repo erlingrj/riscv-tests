@@ -33,6 +33,7 @@ int main( int argc, char* argv[] )
   }
 #endif
 
+  perf_counters_setup();
   setStats(1);
   for (i = 0; i < DATA_SIZE; i++)
   {

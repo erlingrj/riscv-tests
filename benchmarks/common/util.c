@@ -1,5 +1,8 @@
 #include "util.h"
-
+static uint64_t start_aq0;
+static uint64_t start_bq0;
+static uint64_t start_aq1;
+static uint64_t start_bq1;
 
 // Setup function: Makes the appropriate calls to setup the hpmcounters. These are defined in the core.scala of the BOOM
 
@@ -15,13 +18,25 @@ void perf_counters_setup() {
   write_csr(mhpmevent5, 0x403); // AQ1
   write_csr(mhpmevent6, 0x803); // BQ1
 
-/*
+  
+  /*
 
   // Read the initial value of the CSR regs attached to the counters
-  start_aq0 = read_csr_safe(hpmcounter3);
-  start_bq0 = read_csr_safe(hpmcounter4);
-  start_aq1 = read_csr_safe(hpmcounter5);
-  start_hpmc6 = read_csr_safe(hpmcounter6);  
+  start_aq0 = read_csr(hpmcounter3);
+  start_bq0 = read_csr(hpmcounter4);
+  start_aq1 = read_csr(hpmcounter5);
+  start_bq1 = read_csr(hpmcounter6);  
 
-*/
+ */
+}
+
+
+void perf_counters_print() {
+  uint64_t end_aq0 = read_csr(hpmcounter3);
+  uint64_t end_bq0 = read_csr(hpmcounter4);
+  uint64_t end_aq1 = read_csr(hpmcounter5);
+  uint64_t end_bq1 = read_csr(hpmcounter6);  
+
+  printf("AQ0=%d\n", end_aq0-start_aq0);
+
 }

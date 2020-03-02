@@ -41,19 +41,21 @@ static char* counter_names[NUM_COUNTERS];
 void setStats(int enable)
 {
   int i = 0;
-#define READ_CTR(name) do { \
+#define READ_CTR(arch_name, human_name) do { \
     while (i >= NUM_COUNTERS) ; \
-    uintptr_t csr = read_csr(name); \
-    if (!enable) { csr -= counters[i]; counter_names[i] = #name; } \
+    uintptr_t csr = read_csr(arch_name); \
+    if (!enable) { csr -= counters[i]; counter_names[i] = #human_name; } \
     counters[i++] = csr; \
   } while (0)
 
-  READ_CTR(mcycle);
-  READ_CTR(minstret);
-  READ_CTR(mhpmevent3);
-  READ_CTR(mhpmevent4);
-  READ_CTR(mhpmevent5);
-  READ_CTR(mhpmevent6); // erlingrj: Add our own counters. They will be printer with this name
+  // erlingrj: Add our own counters. 
+  //  arch_name is the counter-name as specified in the isa(?). human_name is what it is printed as.
+  READ_CTR(mcycle, mcycle);
+  READ_CTR(minstret, minstret);
+  READ_CTR(hpmcounter3, AQ-0);
+  READ_CTR(hpmcounter4, BQ-0);
+  READ_CTR(hpmcounter5, AQ-1);
+  READ_CTR(hpmcounter6, BQ-1); 
 
 
 #undef READ_CTR
@@ -118,11 +120,13 @@ void _init(int cid, int nc)
 
   char buf[NUM_COUNTERS * 32] __attribute__((aligned(64)));
   char* pbuf = buf;
-  for (int i = 0; i < NUM_COUNTERS; i++)
-    if (counters[i])
-      pbuf += sprintf(pbuf, "%s = %d\n", counter_names[i], counters[i]);
-  if (pbuf != buf)
+  for (int i = 0; i < NUM_COUNTERS; i++) {
+    pbuf += sprintf(pbuf, "%s = %d\n", counter_names[i], counters[i]);
+  }
+    
+  if (pbuf != buf) {
     printstr(buf);
+  }
 
   exit(ret);
 }

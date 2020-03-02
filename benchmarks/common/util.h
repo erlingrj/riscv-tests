@@ -91,5 +91,5 @@ static uintptr_t insn_len(uintptr_t pc)
 //  Add function for setting up our own custom performance counters
 
 void perf_counters_setup();
-
+void perf_counters_print();
 #endif //__UTIL_H

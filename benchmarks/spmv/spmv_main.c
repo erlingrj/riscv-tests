@@ -44,6 +44,8 @@ int main( int argc, char* argv[] )
   spmv(R, val, idx, x, ptr, y);
 #endif
 
+  perf_counters_setup();
+  
   setStats(1);
   spmv(R, val, idx, x, ptr, y);
   setStats(0);

@@ -224,6 +224,7 @@ int main( int argc, char* argv[] )
   // Solve it
 
   towers_clear( &towers );
+  perf_counters_setup();
   setStats(1);
   towers_solve( &towers );
   setStats(0);
