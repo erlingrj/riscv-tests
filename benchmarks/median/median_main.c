@@ -38,8 +38,6 @@ int main( int argc, char* argv[] )
   median( DATA_SIZE, input_data, results_data );
   setStats(0);
 
-  perf_counters_print();
-
   // Check the results
   return verify( DATA_SIZE, results_data, verify_data );
 }
