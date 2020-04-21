@@ -30,6 +30,8 @@ bmarks = \
 	mt-vvadd \
 	mt-matmul \
 	pmp \
+    mem_sys \
+    mem_test \
 
 #--------------------------------------------------------------------
 # Build rules
