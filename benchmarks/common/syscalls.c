@@ -34,7 +34,7 @@ static uintptr_t syscall(uintptr_t which, uint64_t arg0, uint64_t arg1, uint64_t
 }
 
 
-#define NUM_COUNTERS 6 // erlingrj: 2 + number of our own counters
+#define NUM_COUNTERS 8 // erlingrj: 2 + number of our own counters
 static uintptr_t counters[NUM_COUNTERS];
 static char* counter_names[NUM_COUNTERS];
 
@@ -52,11 +52,13 @@ void setStats(int enable)
   //  arch_name is the counter-name as specified in the isa(?). human_name is what it is printed as.
   READ_CTR(mcycle, mcycle);
   READ_CTR(minstret, minstret);
-  READ_CTR(hpmcounter3, AQ-0);
-  READ_CTR(hpmcounter4, BQ-0);
-  READ_CTR(hpmcounter5, AQ-1);
-  READ_CTR(hpmcounter6, BQ-1); 
-
+  READ_CTR(hpmcounter3, ctr00);
+  READ_CTR(hpmcounter4, ctr01);
+  READ_CTR(hpmcounter5, ctr02);
+  READ_CTR(hpmcounter6, ctr10);
+  READ_CTR(hpmcounter7, ctr11); 
+  READ_CTR(hpmcounter8, ctr12);
+  
 
 #undef READ_CTR
 }

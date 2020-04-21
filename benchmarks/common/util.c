@@ -16,8 +16,10 @@ void perf_counters_setup() {
   write_csr(mhpmevent3, 0x103); // AQ0
   write_csr(mhpmevent4, 0x203); // BQ0
   write_csr(mhpmevent5, 0x403); // AQ1
-  write_csr(mhpmevent6, 0x803); // BQ1
-
+  
+  write_csr(mhpmevent6, 0x104); // BQ1
+  write_csr(mhpmevent7, 0x204);
+  write_csr(mhpmevent8, 0x404);
   
   /*
 
