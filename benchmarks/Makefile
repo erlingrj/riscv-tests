@@ -32,6 +32,7 @@ bmarks = \
 	pmp \
     mem_sys \
     mem_test \
+    pointless_pointers \
 
 #--------------------------------------------------------------------
 # Build rules

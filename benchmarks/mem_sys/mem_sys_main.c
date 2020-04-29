@@ -30,8 +30,8 @@ int main(int argc, char** argv){
     csr_time = csr_time_sum/256;
     int mem_size = 64;
     printf("csr_time %d\n", csr_time);
-    for(int j = 0; j<17; j++){
-        int sum = 0;
+    for(int j = 0; j<18; j++){
+        int64_t sum = 0;
         int cnt = mem_size * 4;
         int mask = mem_size-1;
         int64_t tmp;

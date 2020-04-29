@@ -1,4 +1,5 @@
 #include "util.h"
+#include <stdio.h>
 static uint64_t start_aq0;
 static uint64_t start_bq0;
 static uint64_t start_aq1;
